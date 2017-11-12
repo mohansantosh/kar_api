@@ -4,14 +4,14 @@ Types::SubCategoryInfoType = GraphQL::ObjectType.define do
   field :category do
 	type types.String
 	resolve -> (obj,args,cxt){
-	 obj.keys
+	 obj.keys[0]
 	}
   end
 
   field :subcategory do
 	type types[types.String]
         resolve -> (obj,args,cxt){
-         obj.values
+         obj.values[0]
         }
   end
 end
