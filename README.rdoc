@@ -19,10 +19,10 @@ Things you may want to cover:
   run: rails s
   Open: http://localhost:3000/graphiql in the browser
   run: Execute below query the IDE to get locale and category info
-
+-------------------------
   query {
 
-  get_category_info{
+  get_category_info(gender: "Men"){
    gender 
    types{
     category
@@ -34,13 +34,15 @@ Things you may want to cover:
     name
     currency
   }
- }
  
-  You can customize the above call by removing to your requirements.
+}
+-------------------------
+   -> gender can be passed as param to get gender specific values
 
- Curl Call: curl -XPOST 'http://localhost:3000/graphql' -H "Content-Type: application/json" -d '{"query":"query {\n\n  get_category_info{\n   gender \n   types{\n    category\n    subcategory\n  }\n  }\n  \n  get_locale{\n    name\n    currency\n  }\n}","variables":null}'
+   -> You can customize the above call by removing to your requirements.
+
+   -> Curl Call: curl -XPOST 'http://localhost:3000/graphql' -H "Content-Type: application/json" -d '{"query":"query {\n\n  get_category_info{\n   gender \n   types{\n    category\n    subcategory\n  }\n  }\n  \n  get_locale{\n    name\n    currency\n  }\n}","variables":null}'
    
-  
 
 * Database creation
 

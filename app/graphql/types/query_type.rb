@@ -30,7 +30,7 @@ end
 
   field :get_category_info do
     type types[Types::CategoryInfoType]
-    #argument :category, types.String
+    argument :gender, types.String
     description "Get all the info"
     resolve ->(obj, args, ctx) {
       catalog_info = []
@@ -43,7 +43,16 @@ end
       women["gender"] = "Women"
       women["category"] = [{"Indian and Fusion Wear" => ["Kurtas","Kurtis","Skirts"]},{"Westwear" => ["Jumpsuits","Tops","Jeans"]},{"Footwear" =>["Flat","Heals"]},{"SunGlasses" => []}]
       catalog_info << women
-      catalog_info
+      if args["gender"].present?
+	catalog_info.each do |type|
+	 if type["gender"] == args["gender"]
+	  catalog_info = []
+	  catalog_info << type
+	  break
+	 end
+        end
+     end
+       catalog_info
     }
   end
 end
